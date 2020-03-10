@@ -1,0 +1,44 @@
+<html>
+
+<head>
+	<script src="../../../lib/jquery-1.11.3.min.js"></script>
+	<script src="plugin.js"></script>
+
+
+	<script type="text/javascript">
+		$(document).ready(
+							function (){					
+											$('#result').template(
+												
+												{
+												//	tpl:'Hallo {{name}}, das ist ein Test',
+													data: {name:'test'}																									
+												}
+												
+											);			
+										}
+	
+						);
+	</script>
+
+
+
+</head>
+
+
+<body>
+
+<script type="text/template" id="templateid">
+Hallo {{name}} Das hier kommt aus dem Template Block
+</script>
+
+
+<div id="result" data-tplid="templateid"></div>
+
+
+</body>
+
+
+
+
+</html>

@@ -1,0 +1,45 @@
+<html>
+
+<head>
+	<script src="../../../lib/jquery-1.11.3.min.js"></script>
+	<script src="plugin.js"></script>
+
+
+	<script type="text/javascript">
+		$(document).ready(
+							function (){					
+											$('#testfield').toDynamicSelect(
+												{ 
+													id:'test',
+													class:'test2', 
+													options:		
+															[
+																{text:'Red',value:'Red', selected:false},
+																{text:'Green',value:'Green', selected:true},
+																{text:'Blue',value:'Blue', selected:false}		
+															]
+												}
+											);			
+										}
+	
+						);
+	</script>
+
+
+
+</head>
+
+
+<body>
+
+	<input type="text" id="testfield" />
+
+
+	<input type="button" value="Display testfield value" onclick="alert($('#testfield').val())" />
+
+</body>
+
+
+
+
+</html>

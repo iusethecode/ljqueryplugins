@@ -1,0 +1,24 @@
+{
+  "name": "ljqueryplugins",
+  "version": "1.0.0",
+  "description": "A library for Javascript and Jquery Functions",
+  "main": "dist/LFunctions.min.js",
+  "scripts": {
+    "build": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-declare": "0.3.0",
+    "gulp-insert": "^0.5.0",
+    "gulp-jslint": "^0.2.2",
+    "gulp-markdown": "^1.1.0",
+    "gulp-prettify": "^0.3.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-shell": "^0.5.1",
+    "gulp-uglify": "^1.4.1"
+  }
+}

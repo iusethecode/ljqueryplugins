@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>PromiseTasks</title>
+    <script src="../../../../lib/jquery-1.11.3.min.js"></script>
+    <script src="plugin.js"></script>
+
+    <style>
+   		.pstatewaiting {
+			color: rgb(68, 68, 68);
+		}
+		
+		.pstaterunning {
+			color: blue;
+		}
+		
+		.pstatedone {
+			color: #79B51C
+		}
+		
+		.pstateerror {
+			color: red;
+		}
+		
+		.perror {
+			color: red;
+		}
+		
+		#queue {
+			width: 100%;
+		}
+    </style>
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+
+            // Create the Queue on a Jquery Object
+            var queue = $('#queue').promiseQueue();
+
+
+            // add some easy Tasks
+            queue.add('Task 1', function () { console.log('in the middle 1') });
+            queue.add('Task 2', function () { console.log('in the middle 2') });
+            queue.add('Task 3', function () { console.log('in the middle 3') });
+
+
+            // Add a Task that will work for 2 Seconds and finish successfully
+            queue.add('Sleep Task 2 Secs', function () {
+                var promise = $.Deferred();
+                setTimeout(function () { promise.resolve() }, 2000);
+                return promise;
+
+            });
+
+            // add an easy Task
+            queue.add('Task 4', function () { console.log('Before Error') });
+
+            // Add a Task that will work for 2 Seconds and finish fails
+            queue.add('Fail Task 2 Secs', function () {
+                var promise = $.Deferred();
+                setTimeout(function () {  queue.add('Task from Task', function () { console.log('From Task') }); promise.reject('This should not happen') }, 2000);
+                return promise;
+
+            });
+
+            // add an easy Task
+            queue.add('Task 5', function () { console.log('After Error') });
+
+            // Add a Task that will work for 2 Seconds and finish successfully
+            queue.add('Sleep Task 2 5 Secs', function () {
+                var promise = $.Deferred();
+                setTimeout(function () { promise.resolve() }, 5000);
+                return promise;
+
+            });
+
+
+
+
+
+            // Start the queue;
+
+            queue.run();
+
+
+            // Add Tasks while running
+            queue.add('After Run Task', function () { console.log('After run') });
+            setTimeout(function () { queue.add('Last Task', function () { console.log('Last task') }); }, 5000);
+
+            
+
+
+
+
+        });
+
+
+    </script>
+
+
+
+</head>
+<body>
+    <h1>Promise Queue with Template in SharePoint Table</h1>
+
+
+
+    <!-- Item Template -->
+    <script type="text/template" id="queueLineTemplate">
+
+        <tr class="pline" id="p{{counter}}">
+            <td class="pdesc ms-vb2">
+                <div>{{description}}</div>
+                <div class="perror"></div>
+            </td>
+
+            <td class="ms-vb2 pstate pstatewaiting">
+                waiting
+            </td>
+
+        </tr>
+    </script>
+
+    <!-- The form-->
+
+
+
+    <p>&nbsp;</p>
+    <table id="queue" data-tplid="queueLineTemplate" class="ms-listviewtable">
+        <tr>
+            <th class="ms-vh2">
+                Task Description
+            </th>
+            <th class="ms-vh2">
+                Task State
+            </th>
+        </tr>
+
+
+    </table>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<h2 id="-spin-and-unspin-">$().spin() and $().unspin()</h2>
+<h3 id="replace-an-input-field-with-a-select-field">Replace an input field with a select field</h3>
+<h4 id="example">Example</h4>
+<pre><code>&lt;style&gt;
+    .spinning{
+        background-image: url(&#39;ajax-loader.gif&#39;);
+        background-repeat:no-repeat;
+        background-position:50% 50%;
+            }
+    .spinning *{
+        visibility:hidden;
+    }
+&lt;/style&gt;  
+&lt;div id=&quot;testarea&quot; style=&quot;border-style: solid; border-color: black; width:400px;&quot;&gt;
+    &lt;h1&gt;Spinning here&lt;/h1&gt;
+&lt;/div&gt;
+
+
+&lt;input type=&quot;button&quot; onclick=&quot;$(&#39;#testarea&#39;).spin()&quot; value=&quot;spin&quot;/&gt;
+&lt;input type=&quot;button&quot; onclick=&quot;$(&#39;#testarea&#39;).unspin()&quot; value=&quot;unspin&quot; /&gt;
+</code></pre><h4 id="options">Options</h4>
+<p>None</p>
+<h2 id="-toselect-options-">$().toSelect(options)</h2>
+<h3 id="replace-an-input-field-with-a-select-field">Replace an input field with a select field</h3>
+<h4 id="example">Example</h4>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    $(document).ready(
+                        function (){            
+
+                                        $(&#39;#testfield&#39;).toSelect(
+                                            { 
+                                                id:&#39;myId&#39;,
+                                                class:&#39;myTestClass&#39;, 
+                                                options:        
+                                                        [
+                                                            {text:&#39;Red&#39;,value:&#39;Red&#39;, selected:false},
+                                                            {text:&#39;Green&#39;,value:&#39;Green&#39;, selected:true},
+                                                            {text:&#39;Blue&#39;,value:&#39;Blue&#39;, selected:false}        
+                                                        ]
+                                            }
+                                        );            
+
+                                    }
+                    );
+&lt;/script&gt;
+</code></pre><p>JQuer
+    <input type="text" id="testfield" /></p>
+<pre><code>&lt;input type=&quot;button&quot; value=&quot;Display testfield value&quot; onclick=&quot;alert($(&#39;#testfield&#39;).val())&quot; /&gt;
+</code></pre><h4 id="options">Options</h4>
+<ul>
+<li><strong>id</strong> The ID of the generated SELECT</li>
+<li><strong>class</strong>  The class of the generated SELECT</li>
+<li><strong>options</strong>  (required) An array containing the information about the OPTIONs that will be generated. Each entry should have the following format<ul>
+<li><strong>text</strong>  The text to be displayed for an OPTION.</li>
+<li><strong>value</strong>  The actual value of an OPTION that will be stored in the input field</li>
+<li><strong>selected</strong>  (true/false) determines if the current OPTION should be preselected.</li>
+</ul>
+</li>
+</ul>

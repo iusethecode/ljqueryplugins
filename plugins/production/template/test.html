@@ -1,0 +1,65 @@
+<html>
+
+<head>
+    <script src="../../../lib/jquery-1.11.3.min.js"></script>
+    <script src="plugin.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(
+							function () {
+							                    $('.result').template(
+                                                    {
+                                                        //	tpl:'Hallo {{name}}, ich wünsche dir {{text}}',
+                                                        data:   [
+                                                                    { id:'1', name: 'Max Musterman', text: "Guten Morgen", image: "icon-person-128.png" },
+                                                                    { id: '2', name: 'Karl Heinz Mustermann', text: "Guten Abend", image: "icon-person-128.png" },
+                                                                    { id: '3', name: 'sdfsdf', text: "Moin", image: "icon-person-128.png" },
+							                                        { id: '4', name: 'test3', text: "Gruezi", image: "icon-person-128.png" },
+                                                                    { id: '5', name: 'test4', }
+                                                                ]
+                                                    }
+                                                );
+                                        }
+
+						);
+    </script>
+
+</head>
+
+
+<body>
+
+    <script type="text/template" id="headerTemplate">
+        <li>
+            <a href="#anchor{{id}}">{{name}}</a>
+        </li>
+    </script>
+
+
+    <script type="text/template" id="bodyTemplate">
+        <h3 id="anchor{{id}}"> Was sagt <i>{{name}}</i> ?</h3>
+        <p>
+            <img src="{{image}}" />
+            Ich wünsche dir: "{{text}}"
+        </p>
+        <hr />
+    </script>
+
+
+
+    <h1>Template Test</h1>
+
+
+    <h2>Alle Namen</h2>
+    <ul class="result" data-tplid="headerTemplate"></ul>
+    <h2>Einzelinformationen</h2>
+    <div class="result" data-tplid="bodyTemplate"></div>
+
+
+</body>
+
+
+
+
+</html>

@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>PromiseTasks</title>
+    <script src="../../../../lib/jquery-1.11.3.min.js"></script>
+    <script src="plugin.js"></script>
+
+    <style>
+        .pline {width: 100%;}
+        .pdesc {}
+        .pstate {float: right;}
+        .pstatewaiting {color: yellow;}
+        .pstaterunning {color: blue;}
+        .pstatedone {color: green;}
+        .pstateerror {color: red;}
+        .perror {color: red;}
+    </style>
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+
+            // Create the Queue on a Jquery Object
+            var queue = $('#content').promiseQueue();
+
+
+            // add some easy Tasks
+            queue.add('Task 1', function () { console.log('in the middle 1') });
+            queue.add('Task 2', function () { console.log('in the middle 2') });
+            queue.add('Task 3', function () { console.log('in the middle 3') });
+
+
+            // Add a Task that will work for 2 Seconds and finish successfully
+            queue.add('Sleep Task 2 Secs', function () {
+                var promise = $.Deferred();
+                setTimeout(function () { promise.resolve() }, 2000);
+                return promise;
+
+            });
+
+            // add an easy Task
+            queue.add('Task 4', function () { console.log('Before Error') });
+
+            // Add a Task that will work for 2 Seconds and finish fails
+            queue.add('Fail Task 2 Secs', function () {
+                var promise = $.Deferred();
+                setTimeout(function () {  queue.add('Task from Task', function () { console.log('From Task') }); promise.reject('This should not happen') }, 2000);
+                return promise;
+
+            });
+
+            // add an easy Task
+            queue.add('Task 5', function () { console.log('After Error') });
+
+            // Add a Task that will work for 2 Seconds and finish successfully
+            queue.add('Sleep Task 2 5 Secs', function () {
+                var promise = $.Deferred();
+                setTimeout(function () { promise.resolve() }, 5000);
+                return promise;
+
+            });
+
+
+
+
+
+            // Start the queue;
+
+            queue.run();
+
+
+            // Add Tasks while running
+            queue.add('After Run Task', function () { console.log('After run') });
+            setTimeout(function () { queue.add('Last Task', function () { console.log('Last task') }); }, 5000);
+
+            
+
+
+
+
+        });
+
+
+    </script>
+
+
+
+</head>
+<body>
+    <h1>Promise Queue</h1>
+
+
+
+
+    <div id="content" style="width:600px"></div>
+
+
+
+</body>
+</html>

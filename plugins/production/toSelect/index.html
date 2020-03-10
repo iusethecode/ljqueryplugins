@@ -1,0 +1,80 @@
+<html>
+
+<head>
+	<script src="../../../../dist/plugins.jquery.standalone.js"></script>
+
+
+
+</head>
+
+
+<body>
+
+<h2>$().toSelect(options)</h2>
+<p>Replace an input field with a select field</p>
+
+
+<h3> Example</h3>
+
+<div class="example">
+	
+	<script type="text/javascript">
+		$(document).ready(
+							function (){			
+										
+											$('#testfield').toSelect(
+												{ 
+													id:'myId',
+													class:'myTestClass', 
+													options:		
+															[
+																{text:'Red',value:'Red', selected:false},
+																{text:'Green',value:'Green', selected:true},
+																{text:'Blue',value:'Blue', selected:false}		
+															]
+												}
+											);			
+										
+										}
+						);
+	</script>
+
+
+
+	<input type="text" id="testfield" />
+
+	<input type="button" value="Display testfield value" onclick="alert($('#testfield').val())" />
+
+</div>
+
+<h3>Options</h3>
+
+<ul>
+	<li><b>id</b>: The ID of the generated SELECT</li>
+	<li><b>class</b>: The class of the generated SELECT</li>
+	<li><b>options</b>: (required) An array containing the information about the OPTIONs that will be generated. Each entry should have the following format:
+	<ul>
+		<li>
+			<b>text</b>: The text to be displayed for an OPTION.
+			</li>
+		<li>
+			<b>value</b>: The actual value of an OPTION that will be stored in the input field
+			</li>
+				<li>
+			<b>selected</b>: (true/false) determines if the current OPTION should be preselected.
+			</li>
+
+		</ul>
+	
+	
+	</li>
+	
+	</ul>
+
+
+</body>
+
+
+
+
+</html>
